@@ -559,7 +559,7 @@ class MultiAgentTracking(gym.Env, EzPickle, metaclass=EnvMeta):
         )
 
         self._np_random = None
-        self.seed(seed=1)
+        self.seed(seed=0)
 
     def load_config(self, config: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """Reinitialize the Multi-Agent Tracking Environment from a dictionary
