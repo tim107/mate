@@ -2,7 +2,7 @@
 
 import os
 
-import gym
+import gymnasium as gym
 
 from mate import agents, constants, environment, utils, wrappers
 from mate.agents import *

@@ -3,7 +3,7 @@
 import itertools
 from typing import Any, Dict, Iterable, List, Optional, Tuple, Union
 
-import gym
+import gymnasium as gym
 import numpy as np
 
 from mate.agents.base import CameraAgentBase, TargetAgentBase
