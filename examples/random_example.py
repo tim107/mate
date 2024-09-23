@@ -40,7 +40,7 @@ def main():
             (camera_infos, target_infos),
         ) = env.step((camera_joint_action, target_joint_action))
 
-        env.render()
+        # env.render()
         if done:
             break
 
