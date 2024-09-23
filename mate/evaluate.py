@@ -14,7 +14,7 @@ from typing import Callable, Union
 import gym
 import numpy as np
 import tqdm
-from gym.utils import colorize
+from gymnasium.utils import colorize
 from pkg_resources import parse_version
 
 import mate
