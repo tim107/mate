@@ -673,7 +673,7 @@ class MultiAgentTracking(gym.Env, EzPickle, metaclass=EnvMeta):
             (camera_joint_observation, target_joint_observation),
             (camera_team_reward, target_team_reward),
             done,
-            (camera_infos, target_infos),
+            {"camera_infos": camera_infos, "target_infos": target_infos},
         )
 
     # pylint: disable-next=arguments-differ,too-many-locals,too-many-branches,too-many-statements
