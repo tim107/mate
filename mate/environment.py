@@ -464,7 +464,7 @@ class MultiAgentTracking(gym.Env, EzPickle, metaclass=EnvMeta):
             ).astype(np.float64),
             dtype=np.float64,
         )
-        print(self.state_space) # test
+        print(self.state_space.shape) # test
 
         self.obstacle_states = np.zeros(
             (self.num_obstacles, consts.OBSTACLE_STATE_DIM), dtype=np.float64
