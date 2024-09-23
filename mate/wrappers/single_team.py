@@ -88,6 +88,7 @@ def group_step(
     group_observe(agents, joint_observation, infos)
     group_communicate(env, agents)
     joint_action = group_act(agents, joint_observation, infos, deterministic=deterministic)
+    print(joint_action)
 
     return joint_action
 
