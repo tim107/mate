@@ -18,7 +18,7 @@ def main():
     camera_agents = RandomCameraAgent().spawn(env.num_cameras)
     target_agents = RandomTargetAgent().spawn(env.num_targets)
 
-    camera_joint_observation, target_joint_observation = env.reset()
+    (camera_joint_observation, target_joint_observation), info = env.reset()
     # env.render()
 
     mate.group_reset(camera_agents, camera_joint_observation)
