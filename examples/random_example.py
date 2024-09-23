@@ -43,6 +43,8 @@ def main():
         camera_infos = infos.get("camera_infos")
         target_infos = infos.get("target_infos")
 
+        print(camera_joint_observation, target_joint_observation)
+
         # env.render()
         if done:
             break
