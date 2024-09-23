@@ -88,7 +88,7 @@ class MixtureAgentMixIn(AgentBase, metaclass=ABCMeta):
 
         int_max = np.iinfo(int).max
         for candidate in self.candidates:
-            seeds.append(candidate.seed(self.np_random.integers(int_max))[0])
+            seeds.append(candidate.seed(int(self.np_random.integers(int_max)))[0])
 
         return seeds
 
