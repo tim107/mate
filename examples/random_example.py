@@ -39,6 +39,7 @@ def main():
             done,
             (camera_infos, target_infos),
         ) = env.step((camera_joint_action, target_joint_action))
+        print(camera_infos, target_infos)
 
         # env.render()
         if done:
