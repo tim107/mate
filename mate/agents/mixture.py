@@ -53,8 +53,8 @@ class MixtureAgentMixIn(AgentBase, metaclass=ABCMeta):
         """Clone an independent copy of the agent."""
 
         candidates = [candidate.clone() for candidate in self.candidates]
-        seed = self.np_random.randint(np.iinfo(int).max)
-        mixture_seed = self.np_random.randint(np.iinfo(int).max)
+        seed = self.np_random.integers(np.iinfo(int).max)
+        mixture_seed = self.np_random.integers(np.iinfo(int).max)
 
         clone = type(self)(
             candidates=candidates, weights=self.weights, mixture_seed=mixture_seed, seed=seed
@@ -65,7 +65,7 @@ class MixtureAgentMixIn(AgentBase, metaclass=ABCMeta):
         """Spawn new agents."""
 
         agents = [self.clone() for _ in range(num_agents)]
-        mixture_seed = self.np_random.randint(np.iinfo(int).max)
+        mixture_seed = self.np_random.integers(np.iinfo(int).max)
         for agent in agents:
             agent.seed_mixture(seed=mixture_seed)
 
@@ -88,7 +88,7 @@ class MixtureAgentMixIn(AgentBase, metaclass=ABCMeta):
 
         int_max = np.iinfo(int).max
         for candidate in self.candidates:
-            seeds.append(candidate.seed(self.np_random.randint(int_max))[0])
+            seeds.append(candidate.seed(self.np_random.integers(int_max))[0])
 
         return seeds
 
