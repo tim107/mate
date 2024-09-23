@@ -830,7 +830,7 @@ class MultiAgentTracking(gym.Env, EzPickle, metaclass=EnvMeta):
         self.target_message_queue.clear()
 
         self.episode_step = 0
-
+        print(self.joint_observation()) # test
         return self.joint_observation()
 
     def send_messages(self, messages: Union[Message, Iterable[Message]]) -> None:
