@@ -473,24 +473,24 @@ class MultiAgentTracking(gym.Env, EzPickle, metaclass=EnvMeta):
         )
 
         self.camera_target_view_mask = np.zeros(
-            (self.num_cameras, self.num_targets), dtype=np.bool8
+            (self.num_cameras, self.num_targets), dtype=np.bool_
         )
-        self.tracked_bits = np.zeros(self.num_targets, dtype=np.bool8)
+        self.tracked_bits = np.zeros(self.num_targets, dtype=np.bool_)
         self.target_camera_view_mask = np.zeros(
-            (self.num_targets, self.num_cameras), dtype=np.bool8
+            (self.num_targets, self.num_cameras), dtype=np.bool_
         )
 
         self.camera_obstacle_view_mask = np.zeros(
-            (self.num_cameras, self.num_obstacles), dtype=np.bool8
+            (self.num_cameras, self.num_obstacles), dtype=np.bool_
         )
         self.camera_camera_view_mask = np.zeros(
-            (self.num_cameras, self.num_cameras), dtype=np.bool8
+            (self.num_cameras, self.num_cameras), dtype=np.bool_
         )
         self.target_obstacle_view_mask = np.zeros(
-            (self.num_targets, self.num_obstacles), dtype=np.bool8
+            (self.num_targets, self.num_obstacles), dtype=np.bool_
         )
         self.target_target_view_mask = np.zeros(
-            (self.num_targets, self.num_targets), dtype=np.bool8
+            (self.num_targets, self.num_targets), dtype=np.bool_
         )
         self.camera_obstacle_observations = np.zeros(
             (self.num_cameras, self.obstacle_states_flagged.size), dtype=np.float64
@@ -514,7 +514,7 @@ class MultiAgentTracking(gym.Env, EzPickle, metaclass=EnvMeta):
         self.target_goal_bits = np.zeros((self.num_targets, self.num_warehouses), dtype=np.int64)
         self.target_goals = np.zeros(self.num_targets, dtype=np.int64)
         self.target_goals.fill(-1)
-        self.target_dones = np.zeros(self.num_targets, dtype=np.bool8)
+        self.target_dones = np.zeros(self.num_targets, dtype=np.bool_)
         self.target_steps = np.zeros(self.num_targets, dtype=np.int64)
         self.tracked_steps = np.zeros(self.num_targets, dtype=np.int64)
 

@@ -61,7 +61,7 @@ class HierarchicalCamera(gym.Wrapper, metaclass=mate.WrapperMeta):
         )
         self.target_view_mask_slice = self.observation_slices['opponent_mask']
 
-        self.index2onehot = np.eye(env.num_targets + 1, env.num_targets, dtype=np.bool8)
+        self.index2onehot = np.eye(env.num_targets + 1, env.num_targets, dtype=np.bool_)
         self.last_observations = None
 
         self.frame_skip = frame_skip
@@ -103,7 +103,7 @@ class HierarchicalCamera(gym.Wrapper, metaclass=mate.WrapperMeta):
         if not self.multi_selection:
             action = self.index2onehot[action]
         else:
-            action = action.astype(np.bool8)
+            action = action.astype(np.bool_)
 
         fragment_rewards = []
         if self.frame_skip > 1:
@@ -118,8 +118,8 @@ class HierarchicalCamera(gym.Wrapper, metaclass=mate.WrapperMeta):
             )
 
             for c in range(self.num_cameras):
-                target_selection = action[c].astype(np.bool8)
-                target_view_mask = observations[c, self.target_view_mask_slice].astype(np.bool8)
+                target_selection = action[c].astype(np.bool_)
+                target_view_mask = observations[c, self.target_view_mask_slice].astype(np.bool_)
                 num_selected_targets = target_selection.sum()
                 num_valid_selected_targets = np.logical_and(
                     target_selection, target_view_mask
@@ -156,7 +156,7 @@ class HierarchicalCamera(gym.Wrapper, metaclass=mate.WrapperMeta):
         for camera, target_selection_bits, observation in zip(
             self.cameras, joint_action, joint_observation
         ):
-            target_view_mask = observation[self.target_view_mask_slice].astype(np.bool8)
+            target_view_mask = observation[self.target_view_mask_slice].astype(np.bool_)
             actions.append(
                 self.executor(camera, self.targets, target_selection_bits, target_view_mask)
             )
@@ -164,7 +164,7 @@ class HierarchicalCamera(gym.Wrapper, metaclass=mate.WrapperMeta):
         return np.asarray(actions, dtype=np.float64)
 
     def action_mask(self, observation):
-        target_view_mask = observation[self.target_view_mask_slice].ravel().astype(np.bool8)
+        target_view_mask = observation[self.target_view_mask_slice].ravel().astype(np.bool_)
 
         if self.multi_selection:
             action_mask = np.repeat(target_view_mask, repeats=2)
@@ -276,7 +276,7 @@ class MultiDiscrete2DiscreteActionMapper:
     @property
     def mask_table(self):
         if self._mask_mapping is None:
-            self._mask_mapping = np.zeros((self.n, np.sum(self.nvec)), dtype=np.bool8)
+            self._mask_mapping = np.zeros((self.n, np.sum(self.nvec)), dtype=np.bool_)
             all_multi_discrete_actions = self.multi_discrete_action_batched(
                 list(range(self.n)), strict=False
             )
@@ -336,7 +336,7 @@ class MultiDiscrete2DiscreteActionMapper:
         return self.discrete_action_batched([multi_discrete_action])[0]
 
     def discrete_action_mask(self, multi_discrete_action_mask):
-        multi_discrete_action_mask = np.asarray(multi_discrete_action_mask, dtype=np.bool8)
+        multi_discrete_action_mask = np.asarray(multi_discrete_action_mask, dtype=np.bool_)
 
         assert self.original_mask_space.contains(multi_discrete_action_mask), (
             f'Multi-discrete action mask {multi_discrete_action_mask} outside given '
