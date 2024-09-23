@@ -29,10 +29,10 @@ def main():
         camera_joint_action = mate.group_step(
             env, camera_agents, camera_joint_observation, camera_infos
         )
-
+        print(camera_agents, camera_joint_observation, camera_infos)
         results = env.step(camera_joint_action)
-        camera_joint_observation, camera_team_reward, done, camera_infos = results
-        camera_infos = camera_infos.get("camera_infos")
+        camera_joint_observation, camera_team_reward, done, infos = results
+        camera_infos = infos.get('camera_infos')
 
         # env.render()
         if done:
