@@ -1,7 +1,7 @@
 from collections import OrderedDict
 
 import numpy as np
-from gym import spaces
+from gymnasium import spaces
 from ray.rllib.agents.ddpg.ddpg_torch_model import DDPGTorchModel
 from ray.rllib.models import ModelCatalog
 from ray.rllib.models.torch.torch_modelv2 import TorchModelV2

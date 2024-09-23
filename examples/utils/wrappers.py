@@ -1,9 +1,9 @@
 import re
 from collections import OrderedDict
 
-import gym
+import gymnasium as gym
 import numpy as np
-from gym import spaces
+from gymnasium import spaces
 from ray import rllib
 
 import mate

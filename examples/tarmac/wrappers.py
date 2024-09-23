@@ -1,8 +1,8 @@
 from collections import OrderedDict
 
-import gym
+import gymnasium as gym
 import numpy as np
-from gym import spaces
+from gymnasium import spaces
 
 import mate
 from examples.utils.wrappers import (

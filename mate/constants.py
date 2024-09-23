@@ -4,7 +4,7 @@ import functools
 from typing import Dict
 
 import numpy as np
-from gym import spaces
+from gymnasium import spaces
 
 from mate.utils import Team
 

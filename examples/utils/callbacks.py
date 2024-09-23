@@ -7,7 +7,7 @@ from operator import itemgetter
 from pathlib import Path
 
 import numpy as np
-from gym import spaces
+from gymnasium import spaces
 from ray.rllib.agents.callbacks import DefaultCallbacks as RLlibCallbackBase
 from ray.rllib.agents.callbacks import MultiCallbacks as RLlibMultiCallbacksBase
 from ray.rllib.policy.sample_batch import SampleBatch

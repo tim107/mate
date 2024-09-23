@@ -4,7 +4,7 @@
 from abc import ABC, abstractmethod
 
 import numpy as np
-from gym import spaces
+from gymnasium import spaces
 from scipy.interpolate import interp1d
 
 from mate import constants as consts

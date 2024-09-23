@@ -1,7 +1,7 @@
 import copy
 
 import numpy as np
-from gym import spaces
+from gymnasium import spaces
 from ray.rllib.agents.dqn import DQNTorchPolicy
 
 import mate

@@ -6,8 +6,8 @@ from abc import ABC, abstractmethod
 from typing import Any, Iterable, List, Optional, Tuple, Type, Union
 
 import numpy as np
-from gym import spaces
-from gym.utils import seeding
+from gymnasium import spaces
+from gymnasium.utils import seeding
 
 from mate import constants as consts
 from mate.agents import utils
