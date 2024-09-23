@@ -19,7 +19,7 @@ def main():
 
     camera_agents = HeuristicCameraAgent().spawn(env.num_cameras)
 
-    camera_joint_observation = env.reset()
+    camera_joint_observation, info = env.reset()
     # env.render()
 
     mate.group_reset(camera_agents, camera_joint_observation)
