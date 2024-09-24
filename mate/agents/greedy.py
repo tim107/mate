@@ -312,6 +312,7 @@ class GreedyTargetAgent(TargetAgentBase):  # pylint: disable=too-many-instance-a
             action = self.goal_location - self.state.location
         else:
             action = np.zeros_like(self.state.location)
+            print(action, "action from greedy else agent")
         step_size = np.linalg.norm(action)
         if step_size > self.state.step_size:
             action *= self.state.step_size / step_size
