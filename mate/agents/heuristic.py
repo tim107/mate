@@ -296,6 +296,7 @@ class HeuristicTargetAgent(GreedyTargetAgent):
     """
 
     def act(self, observation, info=None, deterministic=None):  # pylint: disable=too-many-locals
+        print("enteract\n\n\n\n\n")
         action = super().act(observation, info, deterministic=deterministic)
         print("heuristic", action, "heuristic action")
 
