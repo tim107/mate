@@ -69,7 +69,6 @@ def group_act(
 
     if infos is None:
         infos = itertools.repeat(None)
-    print(agents, "agents")
 
     return [
         agent.act(observation, info, deterministic=deterministic)

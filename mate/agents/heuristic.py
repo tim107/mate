@@ -297,6 +297,7 @@ class HeuristicTargetAgent(GreedyTargetAgent):
 
     def act(self, observation, info=None, deterministic=None):  # pylint: disable=too-many-locals
         action = super().act(observation, info, deterministic=deterministic)
+        print("heuristic", action, "heuristic action")
 
         camera_states, sensed = self.get_all_opponent_states(observation)
 
