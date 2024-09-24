@@ -294,6 +294,7 @@ class GreedyTargetAgent(TargetAgentBase):  # pylint: disable=too-many-instance-a
         Arbitrarily run towards the warehouse with some noise.
         """
 
+        print("enter greedy act\n\n\n\n\n")
         self.state, observation, info, _ = self.check_inputs(observation, info)
 
         if self.state.goal_bits.any():
