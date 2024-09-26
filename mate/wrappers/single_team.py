@@ -207,7 +207,7 @@ class SingleTeamMultiAgent(SingleTeamHelper):
             self.np_random.shuffle(self.opponent_agents)
 
         group_reset(self.opponent_agents, self.opponent_joint_observation)
-        self.opponent_infos = None
+        self.opponent_infos = [None for _ in self.opponent_agents]
 
         return joint_observation
 
