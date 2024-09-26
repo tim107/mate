@@ -19,6 +19,8 @@ def main():
 
     camera_agents = HeuristicCameraAgent().spawn(env.num_cameras)
 
+    print(env.reset())
+
     camera_joint_observation, info = env.reset()
     # env.render()
 
