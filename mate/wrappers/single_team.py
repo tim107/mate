@@ -251,7 +251,7 @@ class SingleTeamMultiAgent(SingleTeamHelper):
         Tuple[np.ndarray, List[float], List[bool], List[dict]],
     ]:
         opponent_joint_action = group_step(
-            self.env, self.opponent_agents, self.opponent_joint_observation, [self.opponent_infos]
+            self.env, self.opponent_agents, self.opponent_joint_observation, self.opponent_infos
         )
         print(opponent_joint_action)
 
