@@ -35,8 +35,7 @@ def main():
         )
         results = env.step(camera_joint_action)
         camera_joint_observation, camera_team_reward, done, infos = results
-        print(results)
-        camera_infos = infos.get('camera_infos')
+        camera_infos = infos
 
         # env.render()
         if done:
