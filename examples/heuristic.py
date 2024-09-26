@@ -21,7 +21,7 @@ def main():
 
     print(env.reset())
 
-    camera_joint_observation, info = env.reset()
+    camera_joint_observation = env.reset()
     # env.render()
 
     mate.group_reset(camera_agents, camera_joint_observation)
