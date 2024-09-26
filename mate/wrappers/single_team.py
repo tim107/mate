@@ -200,7 +200,7 @@ class SingleTeamMultiAgent(SingleTeamHelper):
         )
 
     def reset(self, **kwargs) -> np.ndarray:
-        joint_observation, self.opponent_joint_observation = super().reset(**kwargs)
+        (joint_observation, self.opponent_joint_observation), _ = super().reset(**kwargs)
 
         self.opponent_agents = list(self.opponent_agents_ordered)
         if self.shuffle_entities:
