@@ -157,7 +157,7 @@ class SingleTeamHelper(gym.Wrapper, metaclass=WrapperMeta):
             Tuple[List[dict], List[dict]],
         ],
     ]:
-        return self.swap(*self.env.step(self.swap(action)))
+        return self.swap(*self.env.step(self.swap((*action,))))
 
     # pylint: disable-next=missing-function-docstring
     def swap(self, *items) -> Union[Tuple[Any, Any], Tuple[Any, Any, Any, Any]]:
