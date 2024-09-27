@@ -157,16 +157,14 @@ class SingleTeamHelper(gym.Wrapper, metaclass=WrapperMeta):
             Tuple[List[dict], List[dict]],
         ],
     ]:
-        return self.swap(*self.env.step(self.swap(*action)))
+        return self.swap(*self.env.step(self.swap(action)))
 
     # pylint: disable-next=missing-function-docstring
     def swap(self, *items) -> Union[Tuple[Any, Any], Tuple[Any, Any, Any, Any]]:
         assert len(items) == 1 or len(items) == 2 or len(items) == 4
 
         if len(items) == 1:
-            print("before", items)
             items = items[0]
-            print("after", items)
 
         if self.team is Team.CAMERA:
             return items
