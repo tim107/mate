@@ -157,6 +157,7 @@ class SingleTeamHelper(gym.Wrapper, metaclass=WrapperMeta):
             Tuple[List[dict], List[dict]],
         ],
     ]:
+        print(action, "stepaction")
         return self.swap(*self.env.step(self.swap((*action,))))
 
     # pylint: disable-next=missing-function-docstring
