@@ -669,7 +669,7 @@ class MultiAgentTracking(gym.Env, EzPickle, metaclass=EnvMeta):
         self.target_message_queue.clear()
 
         return (
-            ((camera_joint_observation, target_joint_observation),),
+            (camera_joint_observation, target_joint_observation),
             (camera_team_reward, target_team_reward),
             done,
             {"camera_infos": camera_infos, "target_infos": target_infos},

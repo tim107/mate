@@ -164,7 +164,9 @@ class SingleTeamHelper(gym.Wrapper, metaclass=WrapperMeta):
         assert len(items) == 1 or len(items) == 2 or len(items) == 4
 
         if len(items) == 1:
+            print("before", items)
             items = items[0]
+            print("after", items)
 
         if self.team is Team.CAMERA:
             return items
