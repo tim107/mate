@@ -20,7 +20,7 @@ def main():
     target_agents = NaiveTargetAgent().spawn(env.num_targets)
 
     target_joint_observation = env.reset()
-    env.render()
+    # env.render()
 
     mate.group_reset(target_agents, target_joint_observation)
     target_infos = None
@@ -32,7 +32,7 @@ def main():
         results = env.step(target_joint_action)
         target_joint_observation, target_team_reward, done, target_infos = results
 
-        env.render()
+        # env.render()
         if done:
             break
 
