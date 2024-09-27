@@ -259,9 +259,10 @@ class SingleTeamMultiAgent(SingleTeamHelper):
             (joint_observation, self.opponent_joint_observation),
             (reward, _),
             done,
-            (infos, self.opponent_infos),
+            info_dict,
         ) = super().step((np.asarray(action), np.asarray(opponent_joint_action)))
-
+        infos = info_dict.get("camera_infos")
+        self.opponent_infos = info_dict.get("target_infos")
         if self.repeated_reward_individual_done:
             done = done[0]
 
