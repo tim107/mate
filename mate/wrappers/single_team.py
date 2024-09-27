@@ -163,11 +163,12 @@ class SingleTeamHelper(gym.Wrapper, metaclass=WrapperMeta):
     def swap(self, *items) -> Union[Tuple[Any, Any], Tuple[Any, Any, Any, Any]]:
         assert len(items) == 1 or len(items) == 2 or len(items) == 4
 
+        if len(items) == 1:
+            items = items[0]
+
         if self.team is Team.CAMERA:
             return items
 
-        if len(items) == 1:
-            items = items[0]
         if len(items) == 2:
             return items[1], items[0]
         return tuple(
