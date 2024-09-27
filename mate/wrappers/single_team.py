@@ -258,8 +258,10 @@ class SingleTeamMultiAgent(SingleTeamHelper):
         opponent_joint_action = group_step(
             self.env, self.opponent_agents, self.opponent_joint_observation, self.opponent_infos
         )
+        print("stepst")
         print(opponent_joint_action)
-
+        print(action)
+        print("stepst")
         (
             (joint_observation, self.opponent_joint_observation),
             (reward, _),
