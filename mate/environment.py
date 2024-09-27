@@ -831,7 +831,7 @@ class MultiAgentTracking(gym.Env, EzPickle, metaclass=EnvMeta):
 
         self.episode_step = 0
         print(len(self.joint_observation()), "joint obs len")
-        return self.joint_observation()
+        return self.joint_observation(),
 
     def send_messages(self, messages: Union[Message, Iterable[Message]]) -> None:
         """Buffer the messages from an agent to others in the same team.
