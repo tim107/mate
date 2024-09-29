@@ -3,7 +3,7 @@
 import itertools
 from typing import Any, Dict, Iterable, List, Optional, Tuple, Union
 
-import gym
+import gymnasium as gym
 import numpy as np
 
 from mate.agents.base import CameraAgentBase, TargetAgentBase
@@ -154,11 +154,14 @@ class SingleTeamHelper(gym.Wrapper, metaclass=WrapperMeta):
             Tuple[List[dict], List[dict]],
         ],
     ]:
-        return self.swap(*self.env.step(self.swap(*action)))
+        return self.swap(*self.env.step(self.swap((*action,))))
 
     # pylint: disable-next=missing-function-docstring
     def swap(self, *items) -> Union[Tuple[Any, Any], Tuple[Any, Any, Any, Any]]:
-        assert len(items) == 2 or len(items) == 4
+        assert len(items) == 1 or len(items) == 2 or len(items) == 4
+
+        if len(items) == 1:
+            items = items[0]
 
         if self.team is Team.CAMERA:
             return items
@@ -197,14 +200,14 @@ class SingleTeamMultiAgent(SingleTeamHelper):
         )
 
     def reset(self, **kwargs) -> np.ndarray:
-        joint_observation, self.opponent_joint_observation = super().reset(**kwargs)
+        (joint_observation, self.opponent_joint_observation) = super().reset(**kwargs)
 
         self.opponent_agents = list(self.opponent_agents_ordered)
         if self.shuffle_entities:
             self.np_random.shuffle(self.opponent_agents)
 
         group_reset(self.opponent_agents, self.opponent_joint_observation)
-        self.opponent_infos = None
+        self.opponent_infos = [None for _ in self.opponent_agents]
 
         return joint_observation
 
@@ -250,14 +253,18 @@ class SingleTeamMultiAgent(SingleTeamHelper):
         opponent_joint_action = group_step(
             self.env, self.opponent_agents, self.opponent_joint_observation, self.opponent_infos
         )
-
         (
             (joint_observation, self.opponent_joint_observation),
             (reward, _),
             done,
-            (infos, self.opponent_infos),
+            info_dict,
         ) = super().step((np.asarray(action), np.asarray(opponent_joint_action)))
-
+        if self.team == Team.CAMERA:
+            infos = info_dict.get("camera_infos")
+            self.opponent_infos = info_dict.get("target_infos")
+        else:
+            infos = info_dict.get("target_infos")
+            self.opponent_infos = info_dict.get("camera_infos")
         if self.repeated_reward_individual_done:
             done = done[0]
 

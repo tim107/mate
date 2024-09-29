@@ -39,7 +39,7 @@ class HRLMAPPOCameraAgent(RLlibPolicyMixIn, mate.CameraAgentBase):
     def reset(self, observation):
         super().reset(observation)
 
-        self.index2onehot = np.eye(self.num_targets + 1, self.num_targets, dtype=np.bool8)
+        self.index2onehot = np.eye(self.num_targets + 1, self.num_targets, dtype=np.bool_)
         self.last_action = None
         self.last_selection = None
         self.last_mask = None
@@ -47,7 +47,7 @@ class HRLMAPPOCameraAgent(RLlibPolicyMixIn, mate.CameraAgentBase):
     def act(self, observation, info=None, deterministic=None):
         self.state, observation, info, messages = self.check_inputs(observation, info)
 
-        self.last_mask = observation[self.observation_slices['opponent_mask']].astype(np.bool8)
+        self.last_mask = observation[self.observation_slices['opponent_mask']].astype(np.bool_)
 
         if self.episode_step % self.frame_skip == 0:
             self.last_selection, self.hidden_state = self.compute_single_action(
@@ -57,7 +57,7 @@ class HRLMAPPOCameraAgent(RLlibPolicyMixIn, mate.CameraAgentBase):
             if not self.multi_selection:
                 self.last_selection = self.index2onehot[self.last_selection]
             else:
-                self.last_selection = np.asarray(self.last_selection, dtype=np.bool8)
+                self.last_selection = np.asarray(self.last_selection, dtype=np.bool_)
 
         # Convert target selection to primitive continuous action
         target_states, tracked_bits = self.get_all_opponent_states(observation)

@@ -11,10 +11,10 @@ from collections import OrderedDict
 from dataclasses import dataclass
 from typing import Callable, Union
 
-import gym
+import gymnasium as gym
 import numpy as np
 import tqdm
-from gym.utils import colorize
+from gymnasium.utils import colorize
 from pkg_resources import parse_version
 
 import mate
@@ -88,7 +88,7 @@ def evaluate(
     status = {}
     if render and video_path is not None:
         # pylint: disable-next=import-outside-toplevel
-        from gym.wrappers.monitoring.video_recorder import VideoRecorder
+        from gymnasium.wrappers.monitoring.video_recorder import VideoRecorder
 
         video_path = os.path.realpath(video_path)
         print(f'Rollout video will be saved to "{video_path}".')

@@ -18,14 +18,15 @@ def main():
     camera_agents = RandomCameraAgent().spawn(env.num_cameras)
     target_agents = RandomTargetAgent().spawn(env.num_targets)
 
-    camera_joint_observation, target_joint_observation = env.reset()
-    env.render()
+    (camera_joint_observation, target_joint_observation), = env.reset()
+    # env.render()
 
     mate.group_reset(camera_agents, camera_joint_observation)
     mate.group_reset(target_agents, target_joint_observation)
     camera_infos = None
     target_infos = None
     for i in range(MAX_EPISODE_STEPS):
+        print(i)
         camera_joint_action = mate.group_step(
             env, camera_agents, camera_joint_observation, camera_infos
         )
@@ -37,10 +38,13 @@ def main():
             (camera_joint_observation, target_joint_observation),
             (camera_team_reward, target_team_reward),
             done,
-            (camera_infos, target_infos),
+            infos,
         ) = env.step((camera_joint_action, target_joint_action))
+        camera_infos = infos.get("camera_infos")
+        target_infos = infos.get("target_infos")
 
-        env.render()
+
+        # env.render()
         if done:
             break
 

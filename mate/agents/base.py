@@ -6,8 +6,8 @@ from abc import ABC, abstractmethod
 from typing import Any, Iterable, List, Optional, Tuple, Type, Union
 
 import numpy as np
-from gym import spaces
-from gym.utils import seeding
+from gymnasium import spaces
+from gymnasium.utils import seeding
 
 from mate import constants as consts
 from mate.agents import utils
@@ -96,7 +96,7 @@ class AgentBase(ABC):  # pylint: disable=too-many-instance-attributes,too-many-p
         """Clone an independent copy of the agent."""
 
         clone = copy.deepcopy(self)
-        clone.seed(self.np_random.randint(np.iinfo(int).max))
+        clone.seed(int(self.np_random.integers(np.iinfo(int).max)))
         return clone
 
     def spawn(self, num_agents: int) -> List[AgentType]:
@@ -121,7 +121,7 @@ class AgentBase(ABC):  # pylint: disable=too-many-instance-attributes,too-many-p
 
         seeds, int_max = [seed], np.iinfo(int).max
         if self.action_space is not None:
-            seeds.append(self.action_space.seed(self.np_random.randint(int_max))[0])
+            seeds.append(self.action_space.seed(int(self.np_random.integers(int_max))[0]))
 
         return seeds
 
@@ -174,7 +174,7 @@ class AgentBase(ABC):  # pylint: disable=too-many-instance-attributes,too-many-p
         )
 
         self.action_space = copy.deepcopy(self.state.action_space)
-        self.action_space.seed(self.np_random.randint(np.iinfo(int).max))
+        self.action_space.seed(int(self.np_random.integers(np.iinfo(int).max)))
 
         self.episode_step = -1
         self._step_counter = 0

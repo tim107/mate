@@ -20,10 +20,10 @@ from typing import (
     Union,
 )
 
-import gym
+import gymnasium as gym
 import numpy as np
-from gym import spaces
-from gym.utils import EzPickle, seeding
+from gymnasium import spaces
+from gymnasium.utils import EzPickle, seeding
 
 from mate import constants as consts
 from mate.entities import Camera, Obstacle, Target
@@ -473,24 +473,24 @@ class MultiAgentTracking(gym.Env, EzPickle, metaclass=EnvMeta):
         )
 
         self.camera_target_view_mask = np.zeros(
-            (self.num_cameras, self.num_targets), dtype=np.bool8
+            (self.num_cameras, self.num_targets), dtype=np.bool_
         )
-        self.tracked_bits = np.zeros(self.num_targets, dtype=np.bool8)
+        self.tracked_bits = np.zeros(self.num_targets, dtype=np.bool_)
         self.target_camera_view_mask = np.zeros(
-            (self.num_targets, self.num_cameras), dtype=np.bool8
+            (self.num_targets, self.num_cameras), dtype=np.bool_
         )
 
         self.camera_obstacle_view_mask = np.zeros(
-            (self.num_cameras, self.num_obstacles), dtype=np.bool8
+            (self.num_cameras, self.num_obstacles), dtype=np.bool_
         )
         self.camera_camera_view_mask = np.zeros(
-            (self.num_cameras, self.num_cameras), dtype=np.bool8
+            (self.num_cameras, self.num_cameras), dtype=np.bool_
         )
         self.target_obstacle_view_mask = np.zeros(
-            (self.num_targets, self.num_obstacles), dtype=np.bool8
+            (self.num_targets, self.num_obstacles), dtype=np.bool_
         )
         self.target_target_view_mask = np.zeros(
-            (self.num_targets, self.num_targets), dtype=np.bool8
+            (self.num_targets, self.num_targets), dtype=np.bool_
         )
         self.camera_obstacle_observations = np.zeros(
             (self.num_cameras, self.obstacle_states_flagged.size), dtype=np.float64
@@ -514,7 +514,7 @@ class MultiAgentTracking(gym.Env, EzPickle, metaclass=EnvMeta):
         self.target_goal_bits = np.zeros((self.num_targets, self.num_warehouses), dtype=np.int64)
         self.target_goals = np.zeros(self.num_targets, dtype=np.int64)
         self.target_goals.fill(-1)
-        self.target_dones = np.zeros(self.num_targets, dtype=np.bool8)
+        self.target_dones = np.zeros(self.num_targets, dtype=np.bool_)
         self.target_steps = np.zeros(self.num_targets, dtype=np.int64)
         self.tracked_steps = np.zeros(self.num_targets, dtype=np.int64)
 
@@ -672,7 +672,7 @@ class MultiAgentTracking(gym.Env, EzPickle, metaclass=EnvMeta):
             (camera_joint_observation, target_joint_observation),
             (camera_team_reward, target_team_reward),
             done,
-            (camera_infos, target_infos),
+            {"camera_infos": camera_infos, "target_infos": target_infos},
         )
 
     # pylint: disable-next=arguments-differ,too-many-locals,too-many-branches,too-many-statements
@@ -830,8 +830,7 @@ class MultiAgentTracking(gym.Env, EzPickle, metaclass=EnvMeta):
         self.target_message_queue.clear()
 
         self.episode_step = 0
-
-        return self.joint_observation()
+        return self.joint_observation(),
 
     def send_messages(self, messages: Union[Message, Iterable[Message]]) -> None:
         """Buffer the messages from an agent to others in the same team.
@@ -1222,7 +1221,7 @@ class MultiAgentTracking(gym.Env, EzPickle, metaclass=EnvMeta):
         for entity in itertools.chain(
             self.cameras_ordered, self.targets_ordered, self.obstacles_ordered
         ):
-            seeds.append(entity.seed(self.np_random.randint(int_max))[0])
+            seeds.append(entity.seed(int(self.np_random.integers(int_max)))[0])
 
         return seeds
 

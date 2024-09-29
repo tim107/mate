@@ -1,7 +1,7 @@
 from collections import OrderedDict
 
 import numpy as np
-from gym import spaces
+from gymnasium import spaces
 from ray.rllib.models import ModelCatalog
 from ray.rllib.models.torch.recurrent_net import RecurrentNetwork as TorchRNN
 from ray.rllib.utils.framework import try_import_torch

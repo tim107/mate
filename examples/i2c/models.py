@@ -3,7 +3,7 @@ from collections import OrderedDict, deque
 import numpy as np
 import torch
 import torch.nn as nn
-from gym import spaces
+from gymnasium import spaces
 from ray.rllib.evaluation.postprocessing import Postprocessing
 from ray.rllib.models import ModelCatalog
 from ray.rllib.models.torch.recurrent_net import RecurrentNetwork as TorchRNN

@@ -1,7 +1,7 @@
 import functools
 
 import numpy as np
-from gym import spaces
+from gymnasium import spaces
 from ray.rllib.models import ModelCatalog
 from ray.rllib.models.torch.torch_action_dist import (
     TorchDeterministic,

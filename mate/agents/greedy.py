@@ -50,7 +50,7 @@ class GreedyCameraAgent(CameraAgentBase):  # pylint: disable=too-many-instance-a
         target_states, tracked_bits = self.get_all_opponent_states(observation)
         self.memory = list(target_states)
         self.time2forget = self.memory_period * np.asarray(tracked_bits, dtype=np.int64)
-        self.never_loaded = np.ones(self.num_targets, dtype=np.bool8)
+        self.never_loaded = np.ones(self.num_targets, dtype=np.bool_)
 
         self.prev_action = self.DEFAULT_ACTION
 
@@ -186,7 +186,7 @@ class GreedyCameraAgent(CameraAgentBase):  # pylint: disable=too-many-instance-a
                         del content['target_states']
                 if len(content) > 0:
                     messages.append(self.pack_message(recipient=c, content=content))
-                    delay = self.np_random.randint(self.memory_period // 4, 2 * self.memory_period)
+                    delay = self.np_random.integers(self.memory_period // 4, 2 * self.memory_period)
                     self.communication_delay[c] = delay
 
             self.message2send.clear()

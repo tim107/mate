@@ -4,7 +4,7 @@
 from abc import ABC, abstractmethod
 
 import numpy as np
-from gym import spaces
+from gymnasium import spaces
 from scipy.interpolate import interp1d
 
 from mate import constants as consts
@@ -325,8 +325,8 @@ class Camera(Sensor, Obstacle):  # pylint: disable=too-many-instance-attributes
 
     def reset(self):
         super().reset()
-        self.orientation = self.rotation_step * self.np_random.randint(
-            low=0, high=360 / self.rotation_step
+        self.orientation = self.rotation_step * self.np_random.integers(
+            low=0, high=int(360 / self.rotation_step)
         )
         self.viewing_angle = self.np_random.uniform(
             self.min_viewing_angle, consts.MAX_CAMERA_VIEWING_ANGLE
@@ -582,7 +582,7 @@ class Target(Sensor):  # pylint: disable=too-many-instance-attributes
         self.obstacles = []
         self.capacity = 1
         self.goal_bits = np.zeros(consts.NUM_WAREHOUSES, dtype=np.int64)
-        self.empty_bits = np.zeros(consts.NUM_WAREHOUSES, dtype=np.bool8)
+        self.empty_bits = np.zeros(consts.NUM_WAREHOUSES, dtype=np.bool_)
 
         self.is_colliding = False
 

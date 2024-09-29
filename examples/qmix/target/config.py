@@ -1,6 +1,6 @@
 import copy
 
-from gym import spaces
+from gymnasium import spaces
 from ray import tune
 from ray.rllib.agents.qmix import qmix
 from ray.rllib.models import MODEL_DEFAULTS
