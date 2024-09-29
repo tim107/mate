@@ -294,7 +294,6 @@ class GreedyTargetAgent(TargetAgentBase):  # pylint: disable=too-many-instance-a
         Arbitrarily run towards the warehouse with some noise.
         """
 
-        print("enter greedy act\n\n\n\n\n")
         self.state, observation, info, _ = self.check_inputs(observation, info)
 
         if self.state.goal_bits.any():
@@ -313,7 +312,6 @@ class GreedyTargetAgent(TargetAgentBase):  # pylint: disable=too-many-instance-a
             action = self.goal_location - self.state.location
         else:
             action = np.zeros_like(self.state.location)
-            print(action, "action from greedy else agent")
         step_size = np.linalg.norm(action)
         if step_size > self.state.step_size:
             action *= self.state.step_size / step_size

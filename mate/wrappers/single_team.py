@@ -70,8 +70,6 @@ def group_act(
     if infos is None:
         infos = itertools.repeat(None)
 
-    print(len(agents), len(joint_observation), infos, "testing agents")
-
     return [
         agent.act(observation, info, deterministic=deterministic)
         for agent, observation, info in zip(agents, joint_observation, infos)
@@ -90,7 +88,6 @@ def group_step(
     group_observe(agents, joint_observation, infos)
     group_communicate(env, agents)
     joint_action = group_act(agents, joint_observation, infos, deterministic=deterministic)
-    print("joint actions", joint_action)
 
     return joint_action
 
@@ -157,7 +154,6 @@ class SingleTeamHelper(gym.Wrapper, metaclass=WrapperMeta):
             Tuple[List[dict], List[dict]],
         ],
     ]:
-        print("staction", action, "stepaction")
         return self.swap(*self.env.step(self.swap((*action,))))
 
     # pylint: disable-next=missing-function-docstring
@@ -204,7 +200,6 @@ class SingleTeamMultiAgent(SingleTeamHelper):
         )
 
     def reset(self, **kwargs) -> np.ndarray:
-        print(super().reset(**kwargs), "reset output")
         (joint_observation, self.opponent_joint_observation) = super().reset(**kwargs)
 
         self.opponent_agents = list(self.opponent_agents_ordered)
@@ -258,10 +253,6 @@ class SingleTeamMultiAgent(SingleTeamHelper):
         opponent_joint_action = group_step(
             self.env, self.opponent_agents, self.opponent_joint_observation, self.opponent_infos
         )
-        print("stepst")
-        print(opponent_joint_action)
-        print(action)
-        print("stepst")
         (
             (joint_observation, self.opponent_joint_observation),
             (reward, _),

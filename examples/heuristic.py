@@ -19,7 +19,6 @@ def main():
 
     camera_agents = HeuristicCameraAgent().spawn(env.num_cameras)
 
-    print(env.reset())
 
     camera_joint_observation = env.reset()
     # env.render()
@@ -29,7 +28,6 @@ def main():
 
     for i in range(MAX_EPISODE_STEPS):
         print("step", i)
-        print(camera_agents, camera_joint_observation, camera_infos)
         camera_joint_action = mate.group_step(
             env, camera_agents, camera_joint_observation, camera_infos
         )
